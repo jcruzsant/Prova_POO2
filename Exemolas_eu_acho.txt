@@ -1,0 +1,296 @@
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Cadastro do cabecalho</h1>
+	<a href="Menu.jsp">Menu</a>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Consulta do rodapÃƒÂ©</h1>
+	<a href="Consulta.jsp">Menu</a>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	String acao = request.getParameter("pagina");
+if(acao.equalsIgnoreCase("Cadastro")){
+%>
+<jsp:forward page="Cadastro.jsp"></jsp:forward>
+<%
+} else if(acao.equalsIgnoreCase("Consulta")){
+%>
+<jsp:forward page="Consulta.jsp"></jsp:forward>
+<%
+}else{
+%>
+<jsp:forward page="Menu.jsp"></jsp:forward>
+<%
+}
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page errorPage="Erro.jsp" language="java" buffer="8kb" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	function aviso(){
+		
+	}
+</script>
+
+<form action="Resposta.jsp" name="calculadora" method="post" >
+	<label>Valor</label>
+	<input type="text" name="valor" /><br><br>
+	<label>Taxa</label>
+	<input type="text" name="taxa" /><br><br>
+	<button type="submit" name="calcular" value="calcular">Calcular</button>
+</form>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page info="erro" isErrorPage="true" language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%= (exception !=null ? exception.toString(): "Erro Desconhecido") %>
+</body>
+</html>
+#
+
+
+
+
+#
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="Validar.jsp" name="formPrincipal" method="post">
+		<label>Nome: </label>
+		<input type="text" name="nome"><br/>
+		<label>Sobrenome: </label>
+		<input type="text" name="sobrenome"><br/>
+		<input type="submit" value="enviar"/>	
+	</form>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<header>
+<jsp:include page="Cadastro.jsp"></jsp:include>
+</header>
+<a href="Controle.jsp?pagina=conversor">Conversor</a>
+<footer>
+	<jsp:include page="Consulta.jsp"></jsp:include>
+</footer>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Bem vindo <%= ((session.getAttribute("nome"))+" "+(session.getAttribute("sobrenome"))) %></h1>
+</body>
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+	double calculo = 0;
+	String valor = "";
+	String taxa = "";
+	double val=0.0;
+	double tax=0.0;
+
+	if(request.getParameter("calcular") != null){
+		valor = request.getParameter("valor");
+		taxa = request.getParameter("taxa");
+		
+		val = Double.parseDouble(valor);
+		tax = Double.parseDouble(taxa);
+	}
+	
+	calculo = val * tax;
+	%>
+	<form name="resp" method="post">
+		<% if(valor != null && taxa !=null){ %>
+		<label>Valor: </label><h1><%= val %></h1><br>
+		<label>Taxa: </label><h1><%= tax %></h1><br>
+		<label>Calculo: </label><h1><%= calculo %></h1><br>
+		<%}%>
+	</form>
+	
+</body>
+
+</html>
+#
+
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String pNome = request.getParameter("nome");
+	String sNome = request.getParameter("sobrenome");
+	
+	if(pNome != null && !pNome.trim().equals("") && sNome != null && !sNome.trim().equals("")){
+		session.setAttribute("nome", pNome);
+		session.setAttribute("sobrenome", sNome);
+		response.sendRedirect("ProcessaAcesso.jsp");
+	}else{
+		response.sendRedirect("index.html");
+	}
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+</html>
+#
+
+
+
+#
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="sun.io.Converters" %>
+<%@ page import="org.apache.naming.java.javaURLContextFactory" %>
+<%@ page import="com.mysql.fabric.xmlrpc.base.Data" %>
+<%@ page import="cliente.cliente" %>
+<%@ page import="java.util.* %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="" />
+<script type="text/javascript"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Clientes</h1>
+	<%
+		List<cliente> cltList = new ArrayList<cliente>();
+		cltList.add(new cliente("jorge", "cruz", 30000.0));
+		cltList.add(new cliente("jorge", "cuz", 300.0));
+		cltList.add(new cliente("jorge", "crz", 30.0));
+		
+		double compras = 0;
+		
+		for(int i=0; i<cltList.size(); i++){
+			compras += cltList.get(i).getTotalComprado().doubleValue();
+	%>
+	<label>Nome: <%= cltList.get(i).retornNome()+" "+cltList.get(i).getTotalVendas.doubleValue() %></label><br/>
+	<%
+		}
+	%>
+	<br/>
+	<label onmouseover="msg()">Total Compras: <%= compras %></label>
+	
+</body>
+</html>
+#
