@@ -1,0 +1,132 @@
+#
+public class ImprimirPedido {
+    ManipulandoPedido manipulaPedido = new ManipulandoPedido();
+            
+    public void Imprimir(){
+        manipulaPedido.pedidos();
+        for(int i=0;i<3;i++){
+            System.out.println("| Id Pedido | Id do Item | Preço por Item | Quantidade | Valor do Pedido | ");
+            System.out.println("| "+manipulaPedido.pedidos[i].getPedidoId()+" | "+manipulaPedido.pedidos[i].getItemId()+" | "+manipulaPedido.pedidos[i].getPrecoPorItem()+" | "+manipulaPedido.pedidos[i].getQtd()+" | "+manipulaPedido.ValorPedido(i)+" | ");
+            System.out.println(" ");
+        }
+        System.out.println("| Total de todos os Pedios | "+manipulaPedido.ValorTotalPedido());
+
+    }
+}
+#
+
+#
+public class TestPedido {
+    
+    public static void main (String[] args){
+        ImprimirPedido imprimir = new ImprimirPedido();        
+        imprimir.Imprimir();        
+    }    
+}
+#
+
+
+#
+public class Pedido {
+    private int pedidoId;
+    private int itemId;
+    private double precoPorItem;
+    private int qtd;
+    
+    public Pedido(){
+        this.itemId = 0;
+        this.pedidoId = 0;
+        this.precoPorItem = 0.00;
+        this.qtd = 0;
+        //System.out.println("| "+pedidoId+" | "+itemId+" | "+precoPorItem+" | "+qtd+" | ");
+
+    }
+    
+    public Pedido(int pedidoId, int itemId, double precoPorItem, int qtd){
+        this.itemId = itemId;
+        this.pedidoId = pedidoId;
+        this.precoPorItem = precoPorItem;
+        this.qtd = qtd;
+        //System.out.println("| "+pedidoId+" | "+itemId+" | "+precoPorItem+" | "+qtd+" | ");
+    }
+
+    public int getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(int pedidoId) {
+        this.pedidoId = pedidoId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+    
+    public double getPrecoPorItem(){
+        return precoPorItem;
+    }
+    
+    public void setPrecoPorItem(double precoItem){
+        this.precoPorItem = precoItem;
+    }
+    
+    public int getQtd(){
+        return qtd;
+    }
+    
+    public void setQtd(int qtd){
+        this.qtd = qtd;
+    }
+}
+#
+
+
+#
+public class ManipulandoPedido {
+    Pedido[] pedidos = new Pedido[3];
+    Pedido pedido = new Pedido();
+    
+    public void pedidos(){
+        for(int i=0;i<3;i++){
+            if(i==0){
+                pedidos[i] = new Pedido();
+                pedidos[i].setItemId(871);
+                pedidos[i].setPedidoId(003);
+                pedidos[i].setPrecoPorItem(13.50);
+                pedidos[i].setQtd(12);
+            }else if(i==1){
+                pedidos[i] = new Pedido();
+                pedidos[i].setItemId(872);
+                pedidos[i].setPedidoId(004);
+                pedidos[i].setPrecoPorItem(33.50);
+                pedidos[i].setQtd(6);
+            }else if(i==2){
+                pedidos[i] = new Pedido();
+                pedidos[i].setItemId(873);
+                pedidos[i].setPedidoId(005);
+                pedidos[i].setPrecoPorItem(350.50);
+                pedidos[i].setQtd(3);
+            }else{
+                System.out.print("Erro ao Criar Pedidos.");
+            }
+        }
+    }
+    
+    public double ValorTotalPedido(){
+        double valorTotal = 0.00;
+        for(int x=0;x<3;x++){
+            valorTotal += ValorPedido(x);
+        }
+        return valorTotal;
+    }
+
+    public double ValorPedido(int index){
+        double valorPedido = (pedidos[index].getPrecoPorItem() * pedidos[index].getQtd());
+        return valorPedido;
+    }
+}
+#
